@@ -1,21 +1,21 @@
 [user]
-	email = elliott.minns@pm.me
-	name = Elliott Minns
-	gpgSign = true
+email = andrew.o.kariuki@gmail.com
+name = Oduor Kariuki
+gpgSign = true
 #[credential]
 #	helper = /usr/lib/git-core/git-credential-libsecret
 [pull]
-	rebase = true
+rebase = true
 #[url "git@github.com:"]
-  #insteadOf = https://github.com/
+#insteadOf = https://github.com/
 [init]
-	defaultBranch = main
+defaultBranch = main
 [tag]
-	gpgSign = true
+gpgSign = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
 [gpg]
-	program = gpg
+program = gpg

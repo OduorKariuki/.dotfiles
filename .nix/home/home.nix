@@ -13,8 +13,8 @@ in {
 
   programs.home-manager.enable = true;
 
-  home.username = "elliott";
-  home.homeDirectory = "/home/elliott";
+  home.username = "foaxylabs";
+  home.homeDirectory = "/home/foaxylabs";
   home.pointerCursor = {
     x11.enable = true;
     gtk.enable = true;
@@ -25,15 +25,15 @@ in {
 
   xdg.enable = true;
 
-  xdg.configFile.nvim.source = mkOutOfStoreSymlink "/home/elliott/.dotfiles/.config/nvim";
-  xdg.dataFile.password-store.source = mkOutOfStoreSymlink "/home/elliott/.password-store";
+  xdg.configFile.nvim.source = mkOutOfStoreSymlink "/home/foaxylabs/.dotfiles/.config/nvim";
+  xdg.dataFile.password-store.source = mkOutOfStoreSymlink "/home/foaxylabs/.password-store";
 
   dconf = {
     enable = true;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.11";
 
   programs = {
     tmux = import ./tmux.nix {inherit pkgs;};
@@ -53,11 +53,11 @@ in {
       enable = true;
       settings = {
         preload = [
-          "$HOME/.dotfiles/wallpapers/purple-bokah.jpg"
-          "$HOME/.dotfiles/wallpapers/abstract.png"
+          "$HOME/.dotfiles/.wallpapers/purple-bokah.jpg"
+          "$HOME/.dotfiles/.wallpapers/abstract.png"
         ];
 
-        wallpaper = map (monitor: "${monitor.name},$HOME/.dotfiles/wallpapers/abstract.png") meta.monitors;
+        wallpaper = map (monitor: "${monitor.name},$HOME/.dotfiles/.wallpapers/abstract.png") meta.monitors;
       };
     };
   };

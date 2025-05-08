@@ -5,8 +5,8 @@
 }: {
   enable = true;
   lfs.enable = true;
-  userName = "Elliott Minns";
-  userEmail = "elliott.minns@pm.me";
+  userName = "Oduor Kariuki";
+  userEmail = "andrew.o.kariuki@gmail.com";
   signing.key = null;
   signing.signByDefault = true;
 

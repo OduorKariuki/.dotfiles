@@ -8,13 +8,13 @@
 in {
   programs.home-manager.enable = true;
 
-  home.username = "elliott";
-  home.homeDirectory = "/Users/elliott";
+  home.username = "foaxylabs";
+  home.homeDirectory = "/Users/foaxylabs";
   xdg.enable = true;
 
-  xdg.configFile.nvim.source = mkOutOfStoreSymlink "/Users/elliott/.dotfiles/.config/nvim";
+  xdg.configFile.nvim.source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/.config/nvim";
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.11";
 
   programs = {
     tmux = import ../home/tmux.nix {inherit pkgs;};

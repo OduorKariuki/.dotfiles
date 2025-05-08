@@ -6,7 +6,7 @@ Type=simple
 ExecStart=/usr/bin/protonmail-bridge --noninteractive
 Restart=always
 KillMode=process
-Environment="PASSWORD_STORE_DIR=/home/elliott/.protonmailpass"
+Environment="PASSWORD_STORE_DIR=/home/foaxylabs/.protonmailpass"
 
 # The following is an alternative way to run the bridge in interactive cli mode encapsulated within a named screen session.
 # Can be added to bridge.service

@@ -13,7 +13,7 @@
     ];
     output = {
       "*" = {
-        bg = "$HOME/.dotfiles/wallpapers/abstract.png";
+        bg = "$HOME/.dotfiles/.wallpapers/abstract.png";
       };
     };
   };

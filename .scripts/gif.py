@@ -1,7 +1,7 @@
-import sys
 import os
+import sys
+
 from PIL import Image, ImageSequence
- 
 
 args = sys.argv[1:]
 
@@ -15,10 +15,10 @@ os.makedirs(name)
 
 # Opening the input gif:
 im = Image.open(args[0])
- 
+
 # create an index variable:
 i = 0
- 
+
 # iterate over the frames of the gif:
 for fr in ImageSequence.Iterator(im):
     fr.save(f"{name}/{name}-{i:03d}.png")

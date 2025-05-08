@@ -3,7 +3,7 @@ Description=Dreams Recorder
 After=network.target
 
 [Service]
-ExecStart=/home/elliott/.cargo/bin/drecorder server
+ExecStart=/home/foaxylabs/.cargo/bin/drecorder server
 Type=simple
 Restart=always
 

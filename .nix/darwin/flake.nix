@@ -1,18 +1,17 @@
 {
-  description = "Example Darwin system flake";
+  description = "Foaxy Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     #Templ
     templ.url = "github:a-h/templ";
 
     # Home Manager
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -24,65 +23,68 @@
     home-manager,
     ...
   } @ inputs: let
+
+    username = "foaxylabs";
+
     add-unstable-packages = final: _prev: {
       unstable = import inputs.nixpkgs-unstable {
         system = "aarch64-darwin";
       };
     };
-    username = "elliott";
+    
     configuration = {
       pkgs,
       lib,
       config,
       ...
     }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
       nixpkgs.config.allowUnfree = true;
+
       nixpkgs.overlays = [
         inputs.templ.overlays.default
         add-unstable-packages
       ];
+
       environment.systemPackages =
         [
           pkgs.alacritty
-          pkgs.air
-          pkgs.act
-          pkgs.awscli
-          pkgs.bun
-          pkgs.ffmpeg
-          pkgs.jujutsu
-          pkgs.git
-          pkgs.gh
-          pkgs.gnupg
-          pkgs.unstable.go_1_23
-          pkgs.iperf
-          pkgs.lua-language-server
-          pkgs.mkalias
-          pkgs.neovim
-          pkgs.nil
-          pkgs.obsidian
-          pkgs.opentofu
-          pkgs.pass
-          pkgs.postgresql_16
-          pkgs.rclone
-          pkgs.ripgrep
-          pkgs.rustup
-          pkgs.sqlc
-          pkgs.stylua
-          pkgs.unstable.stripe-cli
-          pkgs.tailwindcss
-          pkgs.tailwindcss-language-server
-          pkgs.qmk
-          pkgs.templ
-          pkgs.tmux
-          pkgs.unstable.amber-lang
-          pkgs.zoxide
+          # pkgs.air
+          # pkgs.act
+          # pkgs.awscli
+          # pkgs.bun
+          # pkgs.ffmpeg
+          # pkgs.jujutsu
+          # pkgs.git
+          # pkgs.gh
+          # pkgs.gnupg
+          # pkgs.unstable.go_1_23
+          # pkgs.python313
+          # pkgs.iperf
+          # pkgs.lua-language-server
+          # pkgs.mkalias
+          # pkgs.neovim
+          # pkgs.nil
+          # pkgs.obsidian
+          # pkgs.opentofu
+          # pkgs.pass
+          # pkgs.postgresql_16
+          # pkgs.rclone
+          # pkgs.ripgrep
+          # pkgs.rustup
+          # pkgs.sqlc
+          # pkgs.stylua
+          # pkgs.unstable.stripe-cli
+          # pkgs.tailwindcss
+          # pkgs.tailwindcss-language-server
+          # pkgs.qmk
+          # pkgs.templ
+          # pkgs.tmux
+          # pkgs.unstable.amber-lang
+          # pkgs.zoxide
         ];
 
-      users.users.elliott = {
-        name = username;
-        home = "/Users/elliott";
+      users.users.${username}  = {
+        home = "/Users/${username}";
       };
 
       homebrew = {
@@ -91,15 +93,16 @@
           "mas"
         ];
         casks = [
-          "hammerspoon"
-          "amethyst"
-          "alfred"
-          "logseq"
-          "notion"
-          "firefox"
-          "discord"
-          "iina"
-          "the-unarchiver"
+          # "hammerspoon"
+          # "amethyst"
+          # "alfred"
+          # "logseq"
+          # "notion"
+          # "firefox"
+          # "discord"
+          # "iina"
+          # "the-unarchiver"
+          "visual-studio-code"
         ];
         taps = [
         ];
@@ -116,7 +119,6 @@
         };
       in
         pkgs.lib.mkForce ''
-          # Set up applications.
           echo "setting up /Applications..." >&2
           rm -rf /Applications/Nix\ Apps
           mkdir -p /Applications/Nix\ Apps
@@ -132,10 +134,10 @@
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
 
-      services.postgresql = {
-        enable = true;
-        package = pkgs.postgresql_16;
-      };
+      # services.postgresql = {
+      #   enable = true;
+      #   package = pkgs.postgresql_16;
+      # };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -163,7 +165,7 @@
   in {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."tsukuyomi" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."foaxy" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
         home-manager.darwinModules.home-manager
@@ -171,12 +173,19 @@
           # `home-manager` config
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.elliott = import ./home.nix;
+          home-manager.users.${username} = import ./home.nix;
         }
       ];
     };
 
+    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs { system = "aarch64-darwin"; };
+      modules = [ ./home.nix ];
+      username = username;
+      homeDirectory = "/Users/${username}";
+    };
+
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."tsukuyomi".pkgs;
+    darwinPackages = self.darwinConfigurations."foaxy".pkgs;
   };
 }

@@ -4,12 +4,8 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-
-    nixos-hardware.url = "github:NixOs/nixos-hardware/master";
-
-    # Unstable Packages
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # Disko
     disko.url = "github:nix-community/disko";
@@ -32,7 +28,7 @@
     ags.inputs.nixpkgs.follows = "nixpkgs";
 
     # Matugen
-    matugen.url = "github:InioX/matugen?ref=v2.2.0";
+    matugen.url = "github:InioX/matugen?ref=v2.4.1";
     matugen.inputs.nixpkgs.follows = "nixpkgs";
 
     # NixVim
@@ -203,7 +199,7 @@
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.elliott = import ./home/home.nix;
+                home-manager.users.foaxylabs = import ./home/home.nix;
                 home-manager.extraSpecialArgs = {
                   inherit inputs;
                   meta = host;

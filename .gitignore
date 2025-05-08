@@ -2,3 +2,5 @@
 .emacs.d/session.*
 .emacs.d/#*#
 .config/tmux/plugins
+.mypy_cache
+flake.lock

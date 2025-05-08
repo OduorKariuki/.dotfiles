@@ -15,6 +15,7 @@
     goimports-reviser
     gnumake
     php
+    python
     vscode-langservers-extracted
     unstable.templ
     tailwindcss

@@ -128,7 +128,7 @@ Simply set the one you want to have begin_src of sh
   setopt auto_cd
 
   #export PATH="/usr/local/opt/curl/bin:$PATH"
-  export PATH="$PATH:/home/elliott/Library/flutter/bin"
+  export PATH="$PATH:/home/foaxylabs/Library/flutter/bin"
 
   alias sudo='sudo '
   export LD_LIBRARY_PATH=/usr/local/lib
@@ -165,7 +165,7 @@ Simply set the one you want to have begin_src of sh
     bindkey "^P" up-line-or-beginning-search
     bindkey "^N" down-line-or-beginning-search
 
-    [ -s "/home/elliott/.svm/svm.sh" ] && source "/home/elliott/.svm/svm.sh"
+    [ -s "/home/foaxylabs/.svm/svm.sh" ] && source "/home/foaxylabs/.svm/svm.sh"
 #+end_src
 
 * Capslock
