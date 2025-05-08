@@ -102,6 +102,7 @@
           # "discord"
           # "iina"
           # "the-unarchiver"
+          "bitwarden"
           "visual-studio-code"
         ];
         taps = [
